@@ -22,7 +22,7 @@ public class HelloController {
     }
 
     @GetMapping("hello-api")
-    @ResponseBody   //데이터를 뷰로 전달시키는것이 아니라 데이터를 그대로 브라우저에 전달함
+    @ResponseBody   //데이터를 뷰로 전달시키는것이 아니라 데이터를 HTTP의 BODY에 담아 그대로 브라우저에 전달함
     public Hello helloApi(@RequestParam("name") String name) {
         Hello hello = new Hello();
         hello.setName(name);
