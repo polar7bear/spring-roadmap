@@ -4,10 +4,14 @@ import com.hello.hellospring.domain.Member;
 import com.hello.hellospring.repository.MemberRepository;
 import com.hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+//JPA를 사용할때는 데이터의 저장이나 수정이 있을때는 @Transactional이 있어야함.
+//JPA는 join들어올때 모든 데이터변경이 다 Transactional안에서 실행이 되어야함.
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -19,9 +23,7 @@ public class MemberService {
 
     // 회원가입
     public Long join(Member member) {
-
         validateDuplicateName(member);
-
         memberRepository.save(member);
 
         return member.getId();
